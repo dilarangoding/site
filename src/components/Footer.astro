@@ -1,0 +1,14 @@
+---
+import { formatDate } from "../lib/utils";
+
+interface Props {
+  date: Date;
+}
+
+const { date } = Astro.props;
+---
+
+<footer class="mt-12 flex items-center justify-between text-gray-500">
+  <span>— Riyon Aryono</span>
+  <span>{formatDate(date)}</span>
+</footer>

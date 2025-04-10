@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import { formatDate } from "../lib/utils";
+
+const collection = await getCollection("posts");
+const posts = collection
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<ul>
+  {
+    posts.map((post) => (
+      <li>
+        <a href={`/posts/${post.slug}`}>{post.data.title}</a>
+        <span> — {formatDate(post.data.date)}</span>
+      </li>
+    ))
+  }
+</ul>
